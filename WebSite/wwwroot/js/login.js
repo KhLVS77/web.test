@@ -12,6 +12,7 @@ Login = function () {
       contentType: 'application/json',
       data: JSON.stringify({ 'login': login, 'password': password }),
     success: function (response) {
+        ShowError("");
         createCookie("login", login, 1);
         Calculator();
     },
