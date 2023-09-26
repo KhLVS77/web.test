@@ -115,4 +115,4 @@ async function SetDropdownSelectedValue(id, value) {
     }
 }
 
-// verifyLoggedIn();
+verifyLoggedIn();
