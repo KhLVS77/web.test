@@ -240,8 +240,3 @@ SetCurrentDate();
 SetNumber('interest', 0);
 SetNumber('income', 0);
 SetEndDate(new Date());
-
-// disable all controls
-$("input").attr("disabled", true);
-$("select").attr("disabled", true);
-$("button").attr("disabled", true);
