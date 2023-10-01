@@ -13,7 +13,7 @@
 
                 <table>
                     <tr>
-                        <td>Deposit Ammount: *</td>
+                        <td>Deposit Amount: *</td>
                         @*<td><input id="amount" oninput="VerifyNumber('amount', 0, 100000);"></td>*@
                         <td><input id="amount" oninput="VerifyNumber('amount', 0, 100001);"></td>
                         <td id="currency">$</td>
@@ -49,7 +49,7 @@
                         <td><button class="btn btn-sm btn-primary" id="calculateBtn" onclick="Calculate().then(Save)">Calculate</button></td>
                     </tr>
                     <tr>
-                        <th>Intereset Earned: *</th>
+                        <th>Interest Earned: *</th>
                         <th><input id="interest" readonly /></th>
                         <td id="currency">$</td>
                     </tr>
