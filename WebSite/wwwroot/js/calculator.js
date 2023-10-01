@@ -1,7 +1,7 @@
 ﻿VerifyNumber = function (id, min, max) {
     var value = Number(document.getElementById(id).value);
 
-    if (isNaN(value) || value < min || value > max) {
+    if (isNaN(value) || value < min || value > max || value.countDecimals() > 2) {
         document.getElementById(id).value = "0";
     }
 
@@ -231,6 +231,11 @@ SetCurrency = function () {
             document.getElementById('currency').textContent = response;
         }
     });
+}
+
+Number.prototype.countDecimals = function () {
+    if (Math.floor(this.valueOf()) === this.valueOf()) return 0;
+    return this.toString().split(".")[1].length || 0;
 }
 
 SetCalculateButtonState();
