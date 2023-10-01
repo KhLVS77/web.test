@@ -10,7 +10,7 @@
 
 VerifyTerm = function (id, min) {
     //var max = document.querySelector('#finYear input').checked ? 365 : 360;
-    var max = 366;
+    var max = 365;
     var value = Number(document.getElementById(id).value);
 
     if (!Number.isInteger(value) || isNaN(value) || value < min || value > max) {
