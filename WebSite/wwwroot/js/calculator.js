@@ -88,9 +88,8 @@ async function ResetMonth() {
             SetDay(day < 31 ? day : 30);
             break;
         default:
-            //AddOptions('day', 1, leapYear ? 29 : 28);
-            //SetDay(day <= (leapYear ? 29 : 28) ? day : (leapYear ? 29 : 28));
-            AddOptions('day', 1, 28);
+            AddOptions('day', 1, leapYear ? 29 : 28);
+            SetDay(day <= (leapYear ? 29 : 28) ? day : (leapYear ? 29 : 28));
             SetDay(day < 29 ? day : 28);
             break;
     }
