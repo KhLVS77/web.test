@@ -1,5 +1,5 @@
 ﻿VerifyNumber = function (id, min, max) {
-    var value = Number(document.getElementById(id).value);
+    var value = Number(GetValue(id));
 
     if (isNaN(value) || value < min || value > max || value.countDecimals() > 2) {
         document.getElementById(id).value = "0";
@@ -11,13 +11,19 @@
 VerifyTerm = function (id, min) {
     //var max = document.querySelector('#finYear input').checked ? 365 : 360;
     var max = 365;
-    var value = Number(document.getElementById(id).value);
+    var value = Number(GetValue(id));
 
     if (!Number.isInteger(value) || isNaN(value) || value < min || value > max) {
         document.getElementById(id).value = "0";
     }
 
     SetCalculateButtonState();
+}
+
+GetValue = function (id) {
+    var input = document.getElementById(id);
+    input.value = input.value.replace(/\s/g, "");
+    return input.value;
 }
 
 Date.prototype.yyyymmdd = function () {
