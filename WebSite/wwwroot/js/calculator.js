@@ -21,9 +21,14 @@ VerifyTerm = function (id, min) {
 
 GetValue = function (id) {
     var input = document.getElementById(id);
-    input.value = input.value.replace(/\s/g, "");
+    var text = '';
+
+    [...input.value].forEach(c => text += isDigit(c) ? c : '');
+    input.value = text;
     return input.value;
 }
+
+isDigit = function (c) { return c === '.' || c >= '0' && c <= '9' }
 
 Date.prototype.yyyymmdd = function () {
     // December 32
