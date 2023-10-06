@@ -9,8 +9,7 @@
 }
 
 VerifyTerm = function (id, min) {
-    //var max = document.querySelector('#finYear input').checked ? 365 : 360;
-    var max = 365;
+    var max = document.querySelector('#finYear input').checked ? 365 : 360;
     var value = Number(GetValue(id));
 
     if (!Number.isInteger(value) || isNaN(value) || value < min || value > max) {
