@@ -60,7 +60,7 @@ namespace WebSite.DB
             Constants.Add("month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 
             Constants.Delete("month");
-            Constants.Add("month", "January", "February", "March", "May", "April", "Jun", "July", "August", "September", "October", "November", "December");
+            Constants.Add("month", "January", "February", "March", "May", "April", "June", "July", "August", "September", "October", "November", "December");
         }
 
         public static void Execute(string sql)
