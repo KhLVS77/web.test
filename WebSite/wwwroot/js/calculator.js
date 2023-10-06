@@ -197,8 +197,10 @@ function SetCalculateButtonState() {
     var amount = Number(document.getElementById('amount').value);
     var days = Number(document.getElementById('term').value);
     var percent = Number(document.getElementById('percent').value);
+    var year1 = document.querySelector('#finYear input:nth-child(1)').checked;
+    var year2 = document.querySelector('#finYear input:nth-child(3)').checked;
 
-    document.getElementById('calculateBtn').disabled = (amount == 0 || days == 0 || percent == 0);
+    document.getElementById('calculateBtn').disabled = (amount == 0 || days == 0 || percent == 0 || (!year1 && !year2));
 }
 
 async function Calculate() {
@@ -221,10 +223,12 @@ async function Calculate() {
 
 SetYear = function (year) {
     if (year == 365) {
-        document.querySelector('#finYear td:nth-child(2) input').checked = false;
+        document.querySelector('#finYear input:nth-child(1)').checked = false;
     } else {
-        document.querySelector('#finYear td:nth-child(3) input').checked = false;
+        document.querySelector('#finYear input:nth-child(3)').checked = false;
     }
+
+    SetCalculateButtonState();
 }
 
 SetCurrency = function () {
