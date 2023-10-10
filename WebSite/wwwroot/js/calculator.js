@@ -1,34 +1,36 @@
 ﻿VerifyNumber = function (id, min, max) {
-    var value = Number(GetValue(id));
+    var value = Number(GetValue(id, true));
 
     if (isNaN(value) || value < min || value > max || value.countDecimals() > 2) {
-        document.getElementById(id).value = "0";
+        document.getElementById(id).value = numbers[id];
     }
 
+    numbers[id] = document.getElementById(id).value;
     SetCalculateButtonState();
 }
 
 VerifyTerm = function (id, min) {
     var max = document.querySelector('#finYear input').checked ? 365 : 360;
-    var value = Number(GetValue(id));
+    var value = Number(GetValue(id), false);
 
     if (!Number.isInteger(value) || isNaN(value) || value < min || value > max) {
-        document.getElementById(id).value = "0";
+        document.getElementById(id).value = numbers[id];
     }
 
+    numbers[id] = document.getElementById(id).value;
     SetCalculateButtonState();
 }
 
-GetValue = function (id) {
+GetValue = function (id, float) {
     var input = document.getElementById(id);
     var text = '';
 
-    [...input.value].forEach(c => text += isDigit(c) ? c : '');
+    [...input.value].forEach(c => text += isDigit(c, float) ? c : '');
     input.value = text;
     return input.value;
 }
 
-isDigit = function (c) { return c === '.' || c >= '0' && c <= '9' }
+isDigit = function (c, float) { return (float && c === '.') || c >= '0' && c <= '9' }
 
 Date.prototype.yyyymmdd = function () {
     // December 32
@@ -251,6 +253,8 @@ Number.prototype.countDecimals = function () {
     if (Math.floor(this.valueOf()) === this.valueOf()) return 0;
     return this.toString().split(".")[1].length || 0;
 }
+
+var numbers = {};
 
 SetCalculateButtonState();
 SetCurrency();
