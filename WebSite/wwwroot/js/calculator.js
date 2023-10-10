@@ -162,6 +162,8 @@ AddOptions = function (id, min, max) {
 }
 
 async function Save() {
+    return await null;
+
     await Sleep(500);
 
     var day = document.getElementById('day').selectedIndex + 1;
@@ -220,6 +222,7 @@ async function Calculate() {
     var income = amount + interest;
 
     CalculateDate();
+    SetCalculateButtonState();
 
     await SetNumber('interest', interest);
     await SetNumber('income', income);
