@@ -14,7 +14,7 @@ VerifyTerm = function (id, min) {
     var value = Number(GetValue(id), false);
 
     if (!Number.isInteger(value) || isNaN(value) || value < min || value > max) {
-        document.getElementById(id).value = numbers[id];
+        document.getElementById(id).value = numbers[id] <= max ? numbers[id] : max;
     }
 
     numbers[id] = document.getElementById(id).value;
@@ -238,6 +238,7 @@ SetYear = function (year) {
     }
 
     SetInputDisabled('term', false);
+    VerifyTerm('term', 0);
     SetCalculateButtonState();
 }
 
