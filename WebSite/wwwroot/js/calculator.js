@@ -18,7 +18,13 @@ VerifyTerm = function (id, min) {
     }
 
     numbers[id] = document.getElementById(id).value;
+    SetHint(id, min, max);
     SetCalculateButtonState();
+}
+
+SetHint = function (id, min, max) {
+    document.getElementById(id).title = `Allowed value is from ${min} to ${max}`;
+    document.getElementById(id).placeholder = `From ${min} to ${max}`;
 }
 
 GetValue = function (id, float) {
@@ -272,3 +278,6 @@ SetNumber('interest', 0);
 SetNumber('income', 0);
 SetEndDate(new Date());
 SetInputDisabled('term', true);
+
+SetHint('amount', 0, 100000);
+SetHint('percent', 0, 100);
