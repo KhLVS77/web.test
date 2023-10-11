@@ -23,11 +23,6 @@
                         <td>%</td>
                     </tr>
                     <tr>
-                        <td>Investment Term: *</td>
-                        <td><input id="term" oninput="VerifyTerm('term', 0);" /></td>
-                        <td>days</td>
-                    </tr>
-                    <tr>
                         <td>Start Date:</td>
                         <td colspan="2">
                             <select id="day" onchange="CalculateDate()"></select>
@@ -43,7 +38,12 @@
                             <input type="radio" onchange="SetYear(365)">360 days</></td>
                         <td></td>
                     </tr>
-                    <tr>
+                <tr>
+                    <td>Investment Term: *</td>
+                    <td><input id="term" oninput="VerifyTerm('term', 0);" /></td>
+                    <td>days</td>
+                </tr>
+                <tr>
                         <td></td>
                         <td><button class="btn btn-sm btn-primary" id="calculateBtn" onclick="Calculate().then(Save)">Calculate</button></td>
                     </tr>

@@ -237,6 +237,7 @@ SetYear = function (year) {
         document.querySelector('#finYear input:nth-child(3)').checked = false;
     }
 
+    SetInputDisabled('term', false);
     SetCalculateButtonState();
 }
 
@@ -252,6 +253,10 @@ SetCurrency = function () {
     });
 }
 
+SetInputDisabled = function (id, disabled) {
+    document.getElementById(id).disabled = disabled;
+}
+
 Number.prototype.countDecimals = function () {
     if (Math.floor(this.valueOf()) === this.valueOf()) return 0;
     return this.toString().split(".")[1].length || 0;
@@ -265,3 +270,4 @@ SetCurrentDate();
 SetNumber('interest', 0);
 SetNumber('income', 0);
 SetEndDate(new Date());
+SetInputDisabled('term', true);
