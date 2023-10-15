@@ -12,6 +12,10 @@
     visibility: visible
 }
 
+.settings-dropdown{
+    width: 200px;
+}
+
 .history {
     visibility: hidden /*visible */
 }
