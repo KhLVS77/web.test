@@ -31,9 +31,8 @@ namespace WebSite
         {
             try
             {
-                var dateFormat = Constants.Get("dateFormat").ElementAt(Settings.Get(login).DateFormat);
-                var formats = new[] { "dd/MM/yyyy", "dd-MM-yyyy", "MM/dd/yyyy", "MM dd yyyy", "yyyy/M/d" };
-                var dateTime = DateTime.ParseExact(date, formats, null, DateTimeStyles.None);
+                var dateFormat = DB.Constants.Get("dateFormat").ElementAt(Settings.Get(login).DateFormat).Replace("m", "M");
+                var dateTime = DateTime.ParseExact(date, DB.DB.DateFormats, null, DateTimeStyles.None);
                 return dateTime.ToString(dateFormat, CultureInfo.InvariantCulture);
             }
             catch
@@ -48,7 +47,7 @@ namespace WebSite
 
         public static decimal ParseNumber(this string number, string login)
         {
-            var dateFormat = Constants.Get("numberFormat").ElementAt(Settings.Get(login).NumberFormat);
+            var dateFormat = DB.Constants.Get("numberFormat").ElementAt(Settings.Get(login).NumberFormat);
             var result = "0";
 
             switch (dateFormat)
@@ -75,7 +74,7 @@ namespace WebSite
 
         public static string FormatNumber(this decimal number, string login)
         {
-            var dateFormat = Constants.Get("numberFormat").ElementAt(Settings.Get(login).NumberFormat);
+            var dateFormat = DB.Constants.Get("numberFormat").ElementAt(Settings.Get(login).NumberFormat);
             var result = Math.Round(number, 2, MidpointRounding.AwayFromZero)
                 .ToString("N", CultureInfo.InvariantCulture);
 

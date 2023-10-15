@@ -12,6 +12,26 @@ namespace WebSite.DB
         public static string DBFileName => $"{AppDomain.CurrentDomain.BaseDirectory}/DB.db";
         private static string Connection => $"Data Source={DBFileName}; Version=3;";
 
+        public static readonly string[] DateFormats = new[]
+            {
+                "yyyy.MM.dd",
+                "yyyy-MM-dd",
+                "yyyy/MM/dd",
+
+                "yyyy-M-d",
+                "yyyy/M/d",
+
+                "d.M.yyyy",
+                "d-M-yyyy",
+                "d/M/yyyy",
+
+                "dd.MM.yyyy",
+                "dd-MM-yyyy",
+                "dd/MM/yyyy",
+
+                "M/d/yyyy"
+            };
+
         static DB()
         {
             if (!File.Exists(DBFileName))
@@ -47,7 +67,7 @@ namespace WebSite.DB
         private static void CreateConstants()
         {
             Constants.Delete("dateFormat");
-            Constants.Add("dateFormat", "dd/MM/yyyy", "dd-MM-yyyy", "MM/dd/yyyy", "MM dd yyyy");
+            Constants.Add("dateFormat", DateFormats.Select(f => f.ToLower()).ToArray());
 
             Constants.Delete("numberFormat");
             Constants.Add("numberFormat", "123,456,789.00", "123.456.789,00", "123 456 789.00", "123 456 789,00");
