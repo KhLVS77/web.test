@@ -255,7 +255,9 @@ SetCurrency = function () {
         dataType: 'json',
         data: { 'login': getCookie('login') },
         success: function (response) {
-            document.getElementById('currency').textContent = response;
+            for (const element of document.getElementsByClassName("currency")) {
+                element.textContent = response;
+            }
         }
     });
 }

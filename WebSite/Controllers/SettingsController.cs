@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using WebSite.DB;
 using WebSite.Models;
 
@@ -38,8 +38,7 @@ namespace WebSite.Controllers
         [HttpPost("save")]
         public IActionResult Save([FromBody] SettingsDto dto)
         {
-            // Settings are not saved
-            // Settings.Save(dto);
+            Settings.Save(dto);
             return Ok();
         }
 
