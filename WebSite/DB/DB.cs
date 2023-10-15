@@ -32,6 +32,14 @@ namespace WebSite.DB
                 "M/d/yyyy"
             };
 
+        public static readonly string[] Currencies = new[]
+        {
+            "EUR (978) - Euro, €",
+            "USD (840) - US Dollar, $",
+            "UAH (980) - Hryvnia, ₴",
+            "GBP (826) - Pound Sterling, £"
+        };
+
         static DB()
         {
             if (!File.Exists(DBFileName))
@@ -73,7 +81,7 @@ namespace WebSite.DB
             Constants.Add("numberFormat", "123,456,789.00", "123.456.789,00", "123 456 789.00", "123 456 789,00");
 
             Constants.Delete("currency");
-            Constants.Add("currency", "$ - US dollar", "€ - euro", "£ - Great Britain Pound", "₴ - Ukrainian hryvnia");
+            Constants.Add("currency", Currencies);
 
             // Wrong months order, mistake in month name
             Constants.Delete("month");

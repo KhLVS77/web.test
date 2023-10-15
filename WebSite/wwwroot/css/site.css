@@ -5,15 +5,11 @@
 }
 
 .settings-dropdown {
-    width: 200px !important;
+    width: 235px !important;
 }
 
 .settings {
     visibility: visible
-}
-
-.settings-dropdown{
-    width: 200px;
 }
 
 .history {

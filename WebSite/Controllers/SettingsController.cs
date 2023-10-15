@@ -26,7 +26,7 @@ namespace WebSite.Controllers
         {
             var currency = Constants.Get("currency").ElementAt(Settings.Get(login).Currency);
 
-            return Json(currency.Split(' ').First());
+            return Json(currency.Split(' ').Last());
         }
 
         [HttpPost]
