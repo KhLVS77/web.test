@@ -55,8 +55,12 @@ function Register() {
 }
 
 function Logout() {
-    deleteCookie('login');
-    window.location = '/';
+    const response = confirm("Are you sure you want to logout?");
+
+    if (response) {
+        deleteCookie('login');
+        window.location = '/';
+    }
 }
 
 function verifyLoggedIn() {
