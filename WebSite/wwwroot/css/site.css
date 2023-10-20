@@ -4,6 +4,12 @@
     cursor: pointer
 }
 
+.header {
+    text-align: center;
+    font-size: xx-large;
+    text-decoration: underline;
+}
+
 .settings-dropdown {
     width: 235px !important;
 }
