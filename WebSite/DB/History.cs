@@ -10,7 +10,7 @@ namespace WebSite.DB
 
         public static List<SaveHistoryDto> Get(string login) =>
             DB
-                .GetRows($"SELECT Amount, Percent, Year, StartDate, EndDate, Days, Interest, Income FROM History WHERE Login = '{login}'")
+                .GetRows($"SELECT Amount, Percent, Year, StartDate, EndDate, Days, Interest, Income, Currency FROM History WHERE Login = '{login}'")
                 .Select(x => new SaveHistoryDto
                 {
                     Login = login,
@@ -21,14 +21,15 @@ namespace WebSite.DB
                     EndDate = x[4],
                     Days = x[5].ToInt(),
                     Interest = x[6],
-                    Income = x[7]
+                    Income = x[7],
+                    Currency = x[8],
                 })
                 .ToList();
 
         public static void Add(SaveHistoryDto dto)
         {
             DB.Execute($"INSERT INTO History VALUES " +
-                       $"('{dto.Login}', '{dto.Amount}', '{dto.Percent}', '{dto.Year}', '{dto.StartDate}', '{dto.EndDate}', {dto.Days}, '{dto.Interest.ParseNumber(dto.Login)}', '{dto.Income.ParseNumber(dto.Login)}')");
+                       $"('{dto.Login}', '{dto.Amount}', '{dto.Percent}', '{dto.Year}', '{dto.StartDate}', '{dto.EndDate}', {dto.Days}, '{dto.Interest.ParseNumber(dto.Login)}', '{dto.Income.ParseNumber(dto.Login)}', '{dto.Currency}')");
+        }
     }
-}
 }

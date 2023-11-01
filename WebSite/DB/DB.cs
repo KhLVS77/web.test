@@ -47,9 +47,15 @@ namespace WebSite.DB
                 SQLiteConnection.CreateFile(DBFileName);
             }
 
+            var validHistoryTable = GetRows($"SELECT Amount, Percent, Year, StartDate, EndDate, Days, Interest, Income, Currency FROM History").Any();
+
             Execute($"CREATE TABLE IF NOT EXISTS {Tables.Users} ({CreateColumns.Users}); ");
             Execute($"CREATE TABLE IF NOT EXISTS {Tables.Settings} ({CreateColumns.Settings}); ");
-            Execute($"CREATE TABLE IF NOT EXISTS {Tables.History} ({CreateColumns.History});");
+            if (!validHistoryTable)
+            {
+                Execute($"DROP TABLE IF EXISTS {Tables.History}; ");
+                Execute($"CREATE TABLE {Tables.History} ({CreateColumns.History});");
+            }
             Execute($"CREATE TABLE IF NOT EXISTS {Tables.Constants} ({CreateColumns.Constants});");
 
             CreateDefaultUsers();
@@ -58,8 +64,8 @@ namespace WebSite.DB
 
         private static void CreateDefaultUsers()
         {
-            var test = new UserDto {Login = "test", Email = "test@test.com", Password = "newyork1", Password2 = "newyork1" };
-            var user = new UserDto {Login = "user", Email = "user@test.com", Password = "password", Password2 = "password" };
+            var test = new UserDto { Login = "test", Email = "test@test.com", Password = "newyork1", Password2 = "newyork1" };
+            var user = new UserDto { Login = "user", Email = "user@test.com", Password = "password", Password2 = "password" };
 
             if (!Users.Names.Contains(test.Login))
             {
@@ -202,7 +208,7 @@ namespace WebSite.DB
     {
         public static string Users = "Login TEXT, Password TEXT, Email TEXT";
         public static string Settings = "Login TEXT, DateFormat TEXT, NumberFormat TEXT, Currency TEXT";
-        public static string History = "Login TEXT, Amount TEXT, Percent TEXT, Year TEXT, StartDate TEXT, EndDate TEXT, Days NUMBER, Interest TEXT, Income TEXT";
+        public static string History = "Login TEXT, Amount TEXT, Percent TEXT, Year TEXT, StartDate TEXT, EndDate TEXT, Days NUMBER, Interest TEXT, Income TEXT, Currency TEXT";
         public static string Constants = "Name TEXT, Value TEXT";
     }
 }

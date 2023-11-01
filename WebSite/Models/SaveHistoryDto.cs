@@ -11,5 +11,6 @@
         public string EndDate { get; set; }
         public string Interest { get; set; }
         public string Income { get; set; }
+        public string Currency { get; set; }
     }
 }

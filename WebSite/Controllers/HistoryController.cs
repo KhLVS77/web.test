@@ -1,5 +1,5 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using WebSite.DB;
 using WebSite.Models;
 
@@ -11,7 +11,7 @@ namespace WebSite.Controllers
         [HttpGet]
         public IActionResult Get(string login)
         {
-            var headers = new[] { "Amount", "%", "Term", "Year", "From", "To", "Interest", "Income"};
+            var headers = new[] { "Amount", "%", "Term", "Year", "From", "To", "Interest", "Income" };
             var history = History.Get(login);
             history.Reverse();
 
@@ -20,14 +20,14 @@ namespace WebSite.Controllers
                 .Select(x =>
                 new[]
                 {
-                    x.Amount.ToDecimal().FormatNumber(x.Login),
+                    x.Currency + x.Amount.ToDecimal().FormatNumber(x.Login),
                     x.Percent + "%",
                     x.Days.ToString(),
                     x.Year,
                     x.StartDate.FormatDate(login),
                     x.EndDate.FormatDate(login),
-                    x.Interest.ToDecimal().FormatNumber(x.Login),
-                    x.Income.ToDecimal().FormatNumber(x.Login)
+                    x.Currency + x.Interest.ToDecimal().FormatNumber(x.Login),
+                    x.Currency + x.Income.ToDecimal().FormatNumber(x.Login)
                 }).ToList();
 
             result.Insert(0, headers);
@@ -45,6 +45,8 @@ namespace WebSite.Controllers
         [HttpPost("save")]
         public ActionResult Save([FromBody] SaveHistoryDto dto)
         {
+            dto.Currency = Constants.Get("currency").ElementAt(Settings.Get(dto.Login).Currency).Split(' ').Last();
+
             History.Add(dto);
             return Ok();
         }
