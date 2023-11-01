@@ -40,16 +40,16 @@ isDigit = function (c, float) { return (float && c === '.') || c >= '0' && c <= 
 
 Date.prototype.yyyymmdd = function () {
     // December 32
-    //var dd = this.getDate();
+    var dd = this.getDate();
     var mm = this.getMonth() + 1;
-    var dd = this.getDate() + 1;
+    //var dd = this.getDate() + 1;
     return [(dd > 9 ? '' : '0') + dd, (mm > 9 ? '' : '0') + mm, this.getFullYear()].join('/');
 };
 
 CalculateDate = function () {
     // December 32
-    //var day = document.getElementById('day').selectedIndex + 1;
-    var day = document.getElementById('day').selectedIndex;
+    var day = document.getElementById('day').selectedIndex + 1;
+    //var day = document.getElementById('day').selectedIndex;
     var month = document.getElementById('month').selectedIndex;
     var year = document.getElementById('year').value;
     var days = Number(document.getElementById('term').value);
