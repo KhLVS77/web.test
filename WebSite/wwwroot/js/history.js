@@ -1,9 +1,13 @@
 ﻿clear = function () {
-    var data = document.getElementsByClassName('data-td');
-    while (data[0])
-        data[0].parentNode.removeChild(data[0]);
+    const response = confirm("Are you sure you want to clear history?");
 
-    $.ajax({ type: 'POST', url: 'api/history/clear', data: { 'login': getCookie('login') } } );
+    if (response) {
+        var data = document.getElementsByClassName('data-td');
+        while (data[0])
+            data[0].parentNode.removeChild(data[0]);
+
+        $.ajax({ type: 'POST', url: 'api/history/clear', data: { 'login': getCookie('login') } } );
+    }
 }
 document.getElementById("clear").addEventListener("click", clear);
 
