@@ -7,9 +7,11 @@
             data[0].parentNode.removeChild(data[0]);
 
         $.ajax({ type: 'POST', url: 'api/history/clear', data: { 'login': getCookie('login') } } );
+        document.getElementById("clear").disabled = true;
     }
 }
 document.getElementById("clear").addEventListener("click", clear);
+document.getElementById("clear").disabled = true;
 
 show = function () {
     $.ajax({
@@ -22,6 +24,7 @@ show = function () {
 
             for (ir = 1; ir < response.length; ir++) {
                 addRow(response[ir], 'td');
+                document.getElementById("clear").disabled = false;
             }
         }
     });
