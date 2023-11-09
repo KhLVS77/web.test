@@ -230,6 +230,16 @@ async function Calculate() {
     return Promise.resolve('done');
 }
 
+$('#amount').on('input', ResetOutputValues);
+$('#percent').on('input', ResetOutputValues);
+$('#term').on('input', ResetOutputValues);
+$('#finYear').on('input', ResetOutputValues);
+
+async function ResetOutputValues() {
+    await SetNumber('interest', 0);
+    await SetNumber('income', 0);
+}
+
 SetYear = function (year) {
     if (year == 365) {
         document.querySelector('#finYear input:nth-child(1)').checked = false;
